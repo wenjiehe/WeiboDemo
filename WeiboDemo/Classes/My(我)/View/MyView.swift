@@ -91,7 +91,7 @@ class MyView: UIView, UITableViewDataSource, UITableViewDelegate {
     // MARK: - 懒加载
     private lazy var tableView: UITableView = {
         let tableV = UITableView(frame: CGRect.zero, style: UITableViewStyle.grouped)
-        tableV.backgroundColor = UIColor.lightGray
+        tableV.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         tableV.delegate = self
         tableV.dataSource = self
         tableV.showsHorizontalScrollIndicator = false
@@ -100,7 +100,7 @@ class MyView: UIView, UITableViewDataSource, UITableViewDelegate {
     
     private lazy var headView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.lightGray
+        view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         return view
     }()
     
@@ -170,13 +170,11 @@ class MyView: UIView, UITableViewDataSource, UITableViewDelegate {
 
         let cell = UITableViewCell()
         
-        if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                let profileCell = tableView.dequeueReusableCell(withIdentifier: "myProfileCell")
-                if let mProCell = profileCell as? MyProfileTableViewCell {
-                    mProCell.updateCell()
-                    return mProCell
-                }
+        if indexPath.section == 0 && indexPath.row == 0{
+            let profileCell = tableView.dequeueReusableCell(withIdentifier: "myProfileCell")
+            if let mProCell = profileCell as? MyProfileTableViewCell {
+                mProCell.updateCell()
+                return mProCell
             }
         } else {
             let myCell = tableView.dequeueReusableCell(withIdentifier: "myCell")
@@ -196,21 +194,21 @@ class MyView: UIView, UITableViewDataSource, UITableViewDelegate {
             return self.headView
         }
         let grayView = UIView()
-        grayView.backgroundColor = UIColor.lightGray
+        grayView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         return grayView
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 6 {
             let grayView = UIView()
-            grayView.backgroundColor = UIColor.lightGray
+            grayView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             return grayView
         }
         return nil
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("index = \(indexPath.row)")
+        print("section = \(indexPath.section), index = \(indexPath.row)")
     }
 
     /*

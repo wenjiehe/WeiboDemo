@@ -14,7 +14,7 @@ class DiscoverViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.green
+        self.view.backgroundColor = #colorLiteral(red: 0, green: 0.8980392157, blue: 0.4, alpha: 1)
 
     }
 

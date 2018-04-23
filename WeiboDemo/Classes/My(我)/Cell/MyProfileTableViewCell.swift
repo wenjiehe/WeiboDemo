@@ -105,7 +105,7 @@ class MyProfileTableViewCell: UITableViewCell {
     private lazy var briefLabel: UILabel = {
         let brief = UILabel()
         brief.text = "简介:暂无介绍"
-        brief.textColor = UIColor.lightGray
+        brief.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         brief.font = UIFont.systemFont(ofSize: 13)
         return brief
     }()
@@ -117,7 +117,7 @@ class MyProfileTableViewCell: UITableViewCell {
     
     private lazy var lineView: UIView = {
         let line = UIView()
-        line.backgroundColor = UIColor.lightGray
+        line.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         return line
     }()
     

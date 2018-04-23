@@ -107,7 +107,7 @@ class MyTableViewCell: UITableViewCell {
     private lazy var subTitleLabel: UILabel = {
         let subLabel = UILabel()
         subLabel.font = UIFont.systemFont(ofSize: 12)
-        subLabel.textColor = UIColor.gray
+        subLabel.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         return subLabel
     }()
     

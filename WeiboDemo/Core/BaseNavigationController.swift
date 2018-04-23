@@ -21,8 +21,8 @@ class BaseNavigationController: UINavigationController {
 //        naBar.barStyle = .default
 //        naBar.shadowImage = UIImage()
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 
         // Do any additional setup after loading the view.
     }
