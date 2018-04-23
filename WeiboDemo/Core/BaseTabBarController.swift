@@ -10,7 +10,7 @@ import UIKit
 
 class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
     
-    //MARK: - 初始化控制器
+    // MARK: - 初始化控制器
     let homeVC = HomeViewController()
     let messageVC = MessageViewController()
     let composeVC = ComposeViewController()
@@ -24,13 +24,16 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
         // Do any additional setup after loading the view.
     }
     
-    //MARK: - 添加控制器
-    func addVC() -> Void
-    {
-        let vcAry : [BaseViewController] = [self.homeVC, self.messageVC, self.composeVC, self.discoverVC, self.myVC]
-        let titleAry : [String] = ["首页", "消息", "发布", "发现", "我"]
-        let normalImgAry : [String] = ["tabbar_home", "tabbar_message_center", "tabbar_compose_icon_add", "tabbar_discover", "tabbar_profile"]
-        let selectImgAry : [String] = ["tabbar_home_highlighted", "tabbar_message_center_highlighted", "tabbar_compose_icon_add_highlighted", "tabbar_discover_highlighted", "tabbar_profile_highlighted"]
+    // MARK: - 添加控制器
+    func addVC() {
+        let vcAry: [BaseViewController] = [self.homeVC, self.messageVC, self.composeVC, self.discoverVC, self.myVC]
+        let titleAry: [String] = ["首页", "消息", "发布", "发现", "我"]
+        let normalImgAry: [String] = ["tabbar_home", "tabbar_message_center", "tabbar_compose_icon_add", "tabbar_discover", "tabbar_profile"]
+        let selectImgAry: [String] = ["tab_home_highlighted",
+                                      "tab_message_center_highlighted",
+                                      "tab_compose_icon_add_highlighted",
+                                      "tab_discover_highlighted",
+                                      "tab_profile_highlighted"]
         var navMtbAry = [BaseNavigationController]()
         for (index, item) in vcAry.enumerated() {
             navMtbAry.append(getNav(vc: item))
@@ -41,7 +44,7 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
         
     }
     
-    //MARK: - 初始化导航控制器
+    // MARK: - 初始化导航控制器
     func getNav(vc: BaseViewController) -> BaseNavigationController {
         return BaseNavigationController(rootViewController: vc)
     }
@@ -53,13 +56,11 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         return true
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

@@ -6,6 +6,7 @@
 //  Copyright © 2018年 贺文杰. All rights reserved.
 //
 
+import SnapKit
 import UIKit
 
 class MyProfileTableViewCell: UITableViewCell {
@@ -24,17 +25,15 @@ class MyProfileTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    //MARK: - 更新cell
-    public func updateCell()
-    {
-        self.customMyView.updateView(["50", "30", "20"]) { (index) in
+    // MARK: - 更新cell
+    public func updateCell() {
+        self.customMyView.updateView(["50", "30", "20"]) { index in
             print("index = \(index)")
         }
     }
     
-    //MARK: - 初始化view
-    private func addView()
-    {
+    // MARK: - 初始化view
+    private func addView() {
         self.contentView.addSubview(self.headImage)
         self.contentView.addSubview(self.nameLabel)
         self.contentView.addSubview(self.briefLabel)
@@ -45,45 +44,44 @@ class MyProfileTableViewCell: UITableViewCell {
         self.makeUpdateConstraint()
     }
     
-    //MARK: - 添加约束
-    private func makeUpdateConstraint()
-    {
-        self.headImage.snp.makeConstraints { (make) in
+    // MARK: - 添加约束
+    private func makeUpdateConstraint() {
+        self.headImage.snp.makeConstraints { make in
             make.top.equalTo(10)
             make.left.equalTo(10)
             make.width.equalTo(60)
             make.height.equalTo(60)
         }
         
-        self.nameLabel.snp.makeConstraints { (make) in
+        self.nameLabel.snp.makeConstraints { make in
             make.top.equalTo(15)
             make.left.equalTo(self.headImage.snp.right).offset(10)
             make.right.equalTo(self.rightImage.snp.left).offset(10)
             make.height.equalTo(25)
         }
         
-        self.briefLabel.snp.makeConstraints { (make) in
+        self.briefLabel.snp.makeConstraints { make in
             make.top.equalTo(self.nameLabel.snp.bottom).offset(0)
             make.left.equalTo(self.headImage.snp.right).offset(10)
             make.right.equalTo(self.rightImage.snp.left).offset(10)
             make.height.equalTo(25)
         }
         
-        self.rightImage.snp.makeConstraints { (make) in
+        self.rightImage.snp.makeConstraints { make in
             make.top.equalTo(10)
             make.right.equalTo(-10)
             make.width.equalTo(50)
             make.height.equalTo(60)
         }
         
-        self.lineView.snp.makeConstraints { (make) in
+        self.lineView.snp.makeConstraints { make in
             make.top.equalTo(self.headImage.snp.bottom).offset(10)
             make.left.equalTo(0)
             make.right.equalTo(0)
             make.height.equalTo(0.5)
         }
         
-        self.customMyView.snp.makeConstraints { (make) in
+        self.customMyView.snp.makeConstraints { make in
             make.top.equalTo(self.lineView.snp.bottom).offset(0)
             make.left.equalTo(0)
             make.right.equalTo(0)
@@ -91,20 +89,20 @@ class MyProfileTableViewCell: UITableViewCell {
         }
     }
     
-    //MARK: - 懒加载
-    private lazy var headImage : UIImageView = {
-        let image = UIImageView.init(image: UIImage.init(named: "tabbar_home_highlighted"))
+    // MARK: - 懒加载
+    private lazy var headImage: UIImageView = {
+        let image = UIImageView(image: #imageLiteral(resourceName: "tab_home_highlighted"))
         return image
     }()
     
-    private lazy var nameLabel : UILabel = {
+    private lazy var nameLabel: UILabel = {
         let name = UILabel()
         name.text = "夕阳下的池塘"
         name.font = UIFont.systemFont(ofSize: 16)
         return name
     }()
     
-    private lazy var briefLabel : UILabel = {
+    private lazy var briefLabel: UILabel = {
         let brief = UILabel()
         brief.text = "简介:暂无介绍"
         brief.textColor = UIColor.lightGray
@@ -112,18 +110,18 @@ class MyProfileTableViewCell: UITableViewCell {
         return brief
     }()
     
-    private lazy var rightImage : UIImageView = {
-        let rightImg = UIImageView.init(image: UIImage.init(named: "tabbar_home_highlighted"))
+    private lazy var rightImage: UIImageView = {
+        let rightImg = UIImageView(image: #imageLiteral(resourceName: "tab_home_highlighted"))
         return rightImg
     }()
     
-    private lazy var lineView : UIView = {
+    private lazy var lineView: UIView = {
         let line = UIView()
         line.backgroundColor = UIColor.lightGray
         return line
     }()
     
-    private lazy var customMyView : CustomMyView = {
+    private lazy var customMyView: CustomMyView = {
         let myView = CustomMyView()
         return myView
     }()

@@ -6,6 +6,7 @@
 //  Copyright © 2018年 贺文杰. All rights reserved.
 //
 
+import SnapKit
 import UIKit
 
 class MyView: UIView, UITableViewDataSource, UITableViewDelegate {
@@ -24,9 +25,8 @@ class MyView: UIView, UITableViewDataSource, UITableViewDelegate {
         super.init(coder: aDecoder)
     }
     
-    //MARK: - 初始化
-    private func addView()
-    {
+    // MARK: - 初始化
+    private func addView() {
         self.titleMtbAry = [[""],
                             ["新的好友"],
                             ["我的故事", "我的相册", "我的赞"],
@@ -60,28 +60,27 @@ class MyView: UIView, UITableViewDataSource, UITableViewDelegate {
         self.makeUpdateConstranint()
     }
     
-    //MARK: - 添加约束
-    private func makeUpdateConstranint()
-    {
-        self.tableView.snp.makeConstraints { (make) in
+    // MARK: - 添加约束
+    private func makeUpdateConstranint() {
+        self.tableView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalToSuperview()
         }
         
-        self.leftImgView.snp.makeConstraints { (make) in
+        self.leftImgView.snp.makeConstraints { make in
             make.left.equalTo(10)
             make.top.equalTo(4)
             make.bottom.equalTo(-4)
             make.width.equalTo(30)
         }
         
-        self.titleLabel.snp.makeConstraints { (make) in
+        self.titleLabel.snp.makeConstraints { make in
             make.left.equalTo(self.leftImgView.snp.right).offset(10)
             make.top.equalTo(0)
             make.bottom.equalTo(0)
             make.right.equalTo(self.rightImgView.snp.left).offset(-10)
         }
         
-        self.rightImgView.snp.makeConstraints { (make) in
+        self.rightImgView.snp.makeConstraints { make in
             make.right.equalTo(-10)
             make.top.equalTo(4)
             make.bottom.equalTo(-4)
@@ -89,9 +88,9 @@ class MyView: UIView, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    //MARK: - 懒加载
-    private lazy var tableView : UITableView = {
-        let tableV = UITableView.init(frame: CGRect.zero, style: UITableViewStyle.grouped)
+    // MARK: - 懒加载
+    private lazy var tableView: UITableView = {
+        let tableV = UITableView(frame: CGRect.zero, style: UITableViewStyle.grouped)
         tableV.backgroundColor = UIColor.lightGray
         tableV.delegate = self
         tableV.dataSource = self
@@ -99,109 +98,101 @@ class MyView: UIView, UITableViewDataSource, UITableViewDelegate {
         return tableV
     }()
     
-    private lazy var headView : UIView = {
+    private lazy var headView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
         return view
     }()
     
-    private lazy var leftImgView : UIImageView = {
-        let leftImgV = UIImageView.init(image: UIImage.init(named: "tabbar_home_highlighted"))
+    private lazy var leftImgView: UIImageView = {
+        let leftImgV: UIImageView = UIImageView(image: #imageLiteral(resourceName: "tab_home_highlighted"))
         return leftImgV
     }()
     
-    private lazy var titleLabel : UILabel = {
+    private lazy var titleLabel: UILabel = {
         let titleLab = UILabel()
         titleLab.text = "你的手机号仍是158******762吗?"
         titleLab.font = UIFont.systemFont(ofSize: 14)
         return titleLab
     }()
     
-    private lazy var rightImgView : UIImageView = {
-        let rightImgV = UIImageView.init(image: UIImage.init(named: "tabbar_home_highlighted"))
+    private lazy var rightImgView: UIImageView = {
+        let rightImgV = UIImageView(image: #imageLiteral(resourceName: "tab_home_highlighted"))
         return rightImgV
     }()
         
-    //MARK: - UITableViewDelegate && UITableViewDataSource
-    func numberOfSections(in tableView: UITableView) -> Int
-    {
+    // MARK: - UITableViewDelegate && UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.titleMtbAry.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let ary = self.titleMtbAry[section]
         return ary.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            if indexPath.row == 0{
+            if indexPath.row == 0 {
                 return 140
             }
         }
         return 44
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
-    {
-        if section == 0{
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
             return 44
         }
         return 10
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat
-    {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 6 {
             return 5
         }
         return 0
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
-    {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
         tableView.layoutMargins = UIEdgeInsets.zero
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let titleAry = self.titleMtbAry[indexPath.section]
         let subTitleAry = self.subTitleMtbAry[indexPath.section]
         let rowHiddenAry = self.rowHiddenMtbAry[indexPath.section]
         let isHidden = rowHiddenAry[indexPath.row]
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")
+        let cell = UITableViewCell()
         
-        if indexPath.section == 0{
-            if indexPath.row == 0{
-                let myProfileCell = tableView.dequeueReusableCell(withIdentifier: "myProfileCell", for: indexPath)
-                let profileCell = myProfileCell as? MyProfileTableViewCell
-                if profileCell != nil {
-                    profileCell!.updateCell()
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                let profileCell = tableView.dequeueReusableCell(withIdentifier: "myProfileCell")
+                if let mProCell = profileCell as? MyProfileTableViewCell {
+                    mProCell.updateCell()
+                    return mProCell
                 }
-                return myProfileCell
             }
-        }else{
-            let myCell = cell as? MyTableViewCell
-            if myCell != nil {
-                myCell!.updateCell(title: titleAry[indexPath.row],
-                                   subTitle: subTitleAry[indexPath.row],
-                                   rowImg: isHidden,
-                                   roundImg: !isHidden)
+        } else {
+            let myCell = tableView.dequeueReusableCell(withIdentifier: "myCell")
+            if let mCell = myCell as? MyTableViewCell {
+                mCell.updateCell(title: titleAry[indexPath.row],
+                                 subTitle: subTitleAry[indexPath.row],
+                                 rowImg: isHidden,
+                                 roundImg: !isHidden)
+                return mCell
             }
         }
-        return cell!
+        return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
-    {
-        if section == 0{
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
             return self.headView
         }
         let grayView = UIView()
@@ -209,9 +200,8 @@ class MyView: UIView, UITableViewDataSource, UITableViewDelegate {
         return grayView
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
-    {
-        if section == 6{
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 6 {
             let grayView = UIView()
             grayView.backgroundColor = UIColor.lightGray
             return grayView
@@ -219,11 +209,9 @@ class MyView: UIView, UITableViewDataSource, UITableViewDelegate {
         return nil
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("index = \(indexPath.row)")
     }
-
 
     /*
     // Only override draw() if you perform custom drawing.

@@ -6,6 +6,7 @@
 //  Copyright © 2018年 贺文杰. All rights reserved.
 //
 
+import SnapKit
 import UIKit
 
 class MyViewController: BaseViewController {
@@ -18,26 +19,24 @@ class MyViewController: BaseViewController {
         self.addView()
     }
     
-    //MARK: - 初始化
-    private func addView()
-    {
+    // MARK: - 初始化
+    private func addView() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: self.leftNavBtn)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.rightNavBtn)
         self.view.addSubview(self.myView)
         self.makeUpdateConsrtaint()
     }
     
-    //MARK: - 添加约束
-    private func makeUpdateConsrtaint()
-    {
-        self.myView.snp.makeConstraints { (make) in
+    // MARK: - 添加约束
+    private func makeUpdateConsrtaint() {
+        self.myView.snp.makeConstraints { make in
             make.left.top.right.bottom.equalTo(0)
         }
         
     }
     
-    //MARK: - 懒加载
-    private lazy var leftNavBtn : UIButton = {
+    // MARK: - 懒加载
+    private lazy var leftNavBtn: UIButton = {
         let leftBtn = UIButton()
         leftBtn.setTitle("添加好友", for: UIControlState.normal)
         leftBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
@@ -46,7 +45,7 @@ class MyViewController: BaseViewController {
         return leftBtn
     }()
     
-    private lazy var rightNavBtn : UIButton = {
+    private lazy var rightNavBtn: UIButton = {
         let rightBtn = UIButton()
         rightBtn.setTitle("设置", for: UIControlState.normal)
         rightBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
@@ -54,22 +53,19 @@ class MyViewController: BaseViewController {
         rightBtn.addTarget(self, action: #selector(setAction(_:)), for: UIControlEvents.touchUpInside)
         return rightBtn
     }()
-
     
-    private lazy var myView : MyView = {
+    private lazy var myView: MyView = {
         let view = MyView()
         return view
     }()
     
-    //MARK: - Action
-    @objc private func addFriendsAction(_ btn : UIButton)
-    {
+    // MARK: - Action
+    @objc private func addFriendsAction(_ btn: UIButton) {
         print("btn = \(btn)")
         print("添加好友")
     }
     
-    @objc private func setAction(_ btn : UIButton)
-    {
+    @objc private func setAction(_ btn: UIButton) {
         print("设置")
     }
 
@@ -77,7 +73,6 @@ class MyViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

@@ -1,0 +1,84 @@
+disabled_rules: # rule identifiers to exclude from running
+opt_in_rules: # some rules are only opt-in
+  - array_init
+  # - attributes # 确定 @objc 等 attributes 是否需要分行写
+  - closure_end_indentation
+  - closure_spacing
+  - conditional_returns_on_newline
+  - contains_over_first_not_nil
+  # - discouraged_object_literal # 不允许使用 Image 和 Color 的 Literal 语法，和 object_literal 相反
+  - empty_count
+  # - explicit_acl # 所有成员明确访问级别
+  # - explicit_enum_raw_value # enum 必须明确定义所以成员的值
+  - explicit_init
+  # - explicit_top_level_acl # 顶级成员明确访问级别
+  # - explicit_type_interface # Properties 不允许使用类型推导
+  # - extension_access_modifier # extension 需要访问级别，和 no_extension_access_modifier 相反
+  - fatal_error_message
+  - file_header
+  - first_where
+  - force_unwrapping
+  - implicit_return
+  - implicitly_unwrapped_optional
+  - joined_default_parameter
+  - let_var_whitespace
+  - literal_expression_end_indentation
+  - multiline_arguments
+  - multiline_parameters
+  - nimble_operator
+  - no_extension_access_modifier
+  # - no_grouping_extension # 不允许使用 extension 组织代码
+  - number_separator
+  - object_literal
+  - operator_usage_whitespace
+  - overridden_super_call
+  - override_in_extension
+  - pattern_matching_keywords
+  - prefixed_toplevel_constant
+  - private_action
+  # - private_outlet # @IBOutlet 必须声明 private 以避免内存泄露
+  - prohibited_super_call
+  - quick_discouraged_call
+  - quick_discouraged_focused_test
+  - quick_discouraged_pending_test
+  - redundant_nil_coalescing
+  - required_enum_case
+  - single_test_class
+  - sorted_first_last
+  - sorted_imports
+  # - strict_fileprivate # 不允许使用 fileprivate
+  # - switch_case_on_newline # case 中执行的语句必须换行
+  # - trailing_closure # 有多個參數時不能使用尾隨閉包
+  - unneeded_parentheses_in_closure_argument
+  - vertical_parameter_alignment_on_call
+  - yoda_condition
+  # Find all the available rules by running:
+  # swiftlint rules
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level
+identifier_name:
+  excluded: [i, j, k, x, y, id, db, vc]
+type_name:
+  excluded: [ID, DB]
+line_length: 200
+file_length: 1000
+  # warning: 200 # warning
+  # error: 300 # error
+  # ignores_comments: true
+trailing_whitespace:
+  ignores_empty_lines: true
+  ignores_comments: true
+force_unwrapping: error
+file_header:
+  required_pattern: |
+                    \/\/
+                    \/\/  .*?\.swift
+                    \/\/  WeiboDemo
+                    \/\/
+                    \/\/  Created by .*? on .*?\.
+                    \/\/  Copyright © \d{4}.*? .*?. All rights reserved\.
+                    \/\/

@@ -1,0 +1,58 @@
+#!/bin/bash
+
+#Path to swiftlint
+SWIFT_LINT="Pods/SwiftLint/swiftlint"
+
+#if $SWIFT_LINT >/dev/null 2>&1; then
+if [[ -e "${SWIFT_LINT}" ]]; then
+    count=0
+    # for file_path in $(git ls-files -m --exclude-from=.gitignore | grep ".swift$"); do
+    #     export SCRIPT_INPUT_FILE_$count=$file_path
+    #     count=$((count + 1))
+    # done
+
+##### Check for modified files in unstaged/Staged area #####
+    for file_path in $(git diff --diff-filter=d --name-only --cached | grep ".swift$"); do
+        export SCRIPT_INPUT_FILE_$count=$file_path
+        count=$((count + 1))
+    done
+
+##### Make the count avilable as global variable #####
+    export SCRIPT_INPUT_FILE_COUNT=$count
+
+    # echo "${SCRIPT_INPUT_FILE_COUNT}"
+
+##### Lint files or exit if no files found for lintint #####
+    if [ "$count" -ne 0 ]; then
+        echo "Found $count lintable files! Linting and fixing the fixible parts..."
+        
+        # git stash save -q --keep-index
+        $SWIFT_LINT autocorrect --quiet --use-script-input-files --config .swiftlint.yml #autocorrects before commit.
+        # git add -u
+        # git stash pop -q
+        git diff --name-only --cached | xargs git add
+        
+        echo ""
+        $SWIFT_LINT lint --strict --quiet --reporter emoji --use-script-input-files --config .swiftlint.yml #autocorrects before commit.
+    else
+        echo "No files to lint!"
+        exit 0
+    fi
+
+    RESULT=$?
+    
+    if [ $RESULT -eq 3 ]; then
+        echo ""
+        echo "Violation found of the type WARNING! Must fix before commit!"
+    elif [ $RESULT -eq 2 ]; then
+        echo ""
+        echo "Violation found of the type ERROR! Must fix before commit!"
+    fi
+    exit $RESULT
+
+else
+#### If SwiftLint is not installed, do not allow commit
+    echo "⚠️ warning: SwiftLint not installed"
+    echo "you can use 'pod install' to install SwiftLint"
+    exit 1
+fi
