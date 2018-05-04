@@ -32,7 +32,6 @@ class MyViewController: BaseViewController {
         self.myView.snp.makeConstraints { make in
             make.left.top.right.bottom.equalTo(0)
         }
-        
     }
     
     // MARK: - 懒加载
@@ -67,6 +66,8 @@ class MyViewController: BaseViewController {
     
     @objc private func setAction(_ btn: UIButton) {
         print("设置")
+        let vc = SetViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

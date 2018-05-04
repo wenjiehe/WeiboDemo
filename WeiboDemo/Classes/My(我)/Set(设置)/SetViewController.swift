@@ -14,8 +14,30 @@ class SetViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.addView()
     }
-
+    
+    // MARK: - 初始化
+    private func addView() {
+        self.title = "设置"
+        self.view.addSubview(self.baseView)
+        self.makeUpdateConsrtaint()
+    }
+    
+    // MARK: - 添加约束
+    private func makeUpdateConsrtaint() {
+        self.baseView.snp.makeConstraints { make in
+            make.left.top.right.bottom.equalTo(0)
+        }
+    }
+    
+    // MARK: - 懒加载
+    private lazy var baseView: SetView = {
+        let view = SetView()
+        return view
+    }()
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

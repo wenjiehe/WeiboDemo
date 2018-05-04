@@ -170,7 +170,7 @@ class MyView: UIView, UITableViewDataSource, UITableViewDelegate {
 
         let cell = UITableViewCell()
         
-        if indexPath.section == 0 && indexPath.row == 0{
+        if indexPath.section == 0 && indexPath.row == 0 {
             let profileCell = tableView.dequeueReusableCell(withIdentifier: "myProfileCell")
             if let mProCell = profileCell as? MyProfileTableViewCell {
                 mProCell.updateCell()

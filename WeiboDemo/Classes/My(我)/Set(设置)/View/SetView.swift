@@ -12,6 +12,7 @@ import UIKit
 class SetView: UIView, UITableViewDataSource, UITableViewDelegate {
     
     var titleMtbAry = [[String]]()
+    var typeMtbAry = [[SetCellStyle]]()
 
     override init(frame: CGRect) {
         super.init(frame: CGRect.zero)
@@ -29,8 +30,17 @@ class SetView: UIView, UITableViewDataSource, UITableViewDelegate {
                             ["消息设置", "屏蔽设置", "隐私设置", "通用设置"],
                             ["清理缓存", "护眼模式"],
                             ["客服中心", "关于微博"]]
+        self.typeMtbAry = [[SetCellStyle.arrow, SetCellStyle.arrow],
+                           [SetCellStyle.arrow, SetCellStyle.arrow, SetCellStyle.arrow, SetCellStyle.arrow],
+                           [SetCellStyle.textAndArrow, SetCellStyle.onOFF],
+                           [SetCellStyle.newText, SetCellStyle.arrow]]
         
         self.addSubview(self.tableView)
+        self.footerView.addSubview(self.exitBtn)
+        self.tableView.tableFooterView = self.footerView
+
+        self.tableView.register(SetTableViewCell.classForCoder(), forCellReuseIdentifier: "setCell")
+        self.makeUpdateConstranint()
     }
     
     // MARK: - 添加约束
@@ -38,16 +48,45 @@ class SetView: UIView, UITableViewDataSource, UITableViewDelegate {
         self.tableView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalToSuperview()
         }
+        
+        self.footerView.snp.makeConstraints { make in
+            make.top.equalTo(self.tableView.snp.bottom).offset(0)
+            make.width.equalTo(UIScreen.main.bounds.size.width)
+            make.height.equalTo(64)
+        }
+
+        self.exitBtn.snp.makeConstraints { make in
+            make.top.equalTo(10)
+            make.left.equalTo(0)
+            make.right.equalTo(0)
+            make.height.equalTo(44)
+        }
     }
     
     // MARK: - 懒加载
     private lazy var tableView: UITableView = {
         let tableV = UITableView(frame: CGRect.zero, style: UITableViewStyle.grouped)
-        tableV.backgroundColor = UIColor.lightGray
+        tableV.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         tableV.delegate = self
         tableV.dataSource = self
         tableV.showsHorizontalScrollIndicator = false
         return tableV
+    }()
+    
+    private lazy var footerView: UIView = {
+        let footer = UIView()
+        footer.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        return footer
+    }()
+    
+    private lazy var exitBtn: UIButton = {
+        let exit = UIButton()
+        exit.setTitle("退出当前账户", for: UIControlState.normal)
+        exit.setTitleColor(#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), for: UIControlState.normal)
+        exit.titleLabel?.textAlignment = NSTextAlignment.center
+        exit.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        exit.addTarget(self, action: #selector(exitAction(_:)), for: UIControlEvents.touchUpInside)
+        return exit
     }()
     
     // MARK: - UITableViewDelegate && UITableViewDataSource
@@ -68,13 +107,9 @@ class SetView: UIView, UITableViewDataSource, UITableViewDelegate {
         return 15
     }
     
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat
-//    {
-//        if section == 6 {
-//            return 5
-//        }
-//        return 0
-//    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.separatorInset = UIEdgeInsets.zero
@@ -85,41 +120,34 @@ class SetView: UIView, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
-//
-//        if indexPath.section == 0{
-//            if indexPath.row == 0{
-//                let myProfileCell = tableView.dequeueReusableCell(withIdentifier: "myProfileCell", for: indexPath)
-//                let profileCell = myProfileCell as? MyProfileTableViewCell
-//                if profileCell != nil {
-//                    profileCell!.updateCell()
-//                }
-//                return myProfileCell
-//            }
-//        }else{
-//            let myCell = cell as? MyTableViewCell
-//            if myCell != nil {
-//                myCell!.updateCell(title: titleAry[indexPath.row],
-//                                   subTitle: subTitleAry[indexPath.row],
-//                                   rowImg: isHidden,
-//                                   roundImg: !isHidden)
-//            }
-//        }
-        return cell
+        let cel = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "setCell")
+        if let setCell = cell as? SetTableViewCell {
+            let titleAry = self.titleMtbAry[indexPath.section]
+            let typeAry = self.typeMtbAry[indexPath.section]
+            setCell.updateCell(titleAry[indexPath.row], typeAry[indexPath.row])
+            return setCell
+        }
+        return cel
     }
     
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
-//    {
-//        if section == 6{
-//            let grayView = UIView()
-//            grayView.backgroundColor = UIColor.lightGray
-//            return grayView
-//        }
-//        return nil
-//    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let grayView = UIView()
+        grayView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        return grayView
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("index = \(indexPath.row)")
+    }
+    
+    // MARK: - 私有方法
+    @objc private func exitAction(_ btn: UIButton) {
+        print("退出了当前账户")
     }
 
     /*

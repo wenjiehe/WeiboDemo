@@ -16,7 +16,6 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
     let composeVC = ComposeViewController()
     let discoverVC = DiscoverViewController()
     let myVC = MyViewController()
-    let color = #imageLiteral(resourceName: <#T##String#>)
 
     override func viewDidLoad() {
         super.viewDidLoad()

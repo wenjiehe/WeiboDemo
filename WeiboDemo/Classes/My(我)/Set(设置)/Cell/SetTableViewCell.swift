@@ -9,10 +9,10 @@
 import UIKit
 
 enum SetCellStyle {
-    case arrow  //右边箭头
+    case arrow /**<右边箭头 */
     case textAndArrow //右边箭头加文字
     case onOFF //开关
-    case new //新内容
+    case newText //新内容
 }
 
 class SetTableViewCell: UITableViewCell {
@@ -33,7 +33,29 @@ class SetTableViewCell: UITableViewCell {
     
     // MARK: - 更新cell
     public func updateCell(_ title: String, _ style: SetCellStyle) {
-        
+        self.titleLabel.text = title
+        switch style {
+            case .arrow:
+                self.rightTextLabel.isHidden = true
+                self.setSwitch.isHidden = true
+                self.newImage.isHidden = true
+                self.rightArrow.isHidden = false
+            case .textAndArrow:
+                self.rightArrow.isHidden = true
+                self.setSwitch.isHidden = true
+                self.newImage.isHidden = true
+                self.rightTextLabel.isHidden = false
+            case .onOFF:
+                self.rightArrow.isHidden = true
+                self.rightTextLabel.isHidden = true
+                self.newImage.isHidden = true
+                self.setSwitch.isHidden = false
+            case .newText:
+                self.rightArrow.isHidden = true
+                self.rightTextLabel.isHidden = true
+                self.setSwitch.isHidden = true
+                self.newImage.isHidden = false
+        }
     }
     
     // MARK: - Action
@@ -92,7 +114,7 @@ class SetTableViewCell: UITableViewCell {
         }
         
         self.lineView.snp.makeConstraints { make in
-            make.bottom.equalTo(-0.5)
+            make.bottom.equalTo(0)
             make.left.equalTo(0)
             make.right.equalTo(0)
             make.height.equalTo(0.5)
