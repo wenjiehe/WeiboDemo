@@ -28,6 +28,11 @@
 		3DEC11452085A51800E19D68 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEC11442085A51800E19D68 /* MyTableViewCell.swift */; };
 		3DEC11472086E0B500E19D68 /* MyProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEC11462086E0B500E19D68 /* MyProfileTableViewCell.swift */; };
 		3DEC11492086E5B200E19D68 /* CustomMyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEC11482086E5B200E19D68 /* CustomMyView.swift */; };
+		3DF8FE4E20A133A500903C9A /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8FE4D20A133A500903C9A /* AddFriendsViewController.swift */; };
+		3DF8FE5020A134A900903C9A /* CustomTopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8FE4F20A134A900903C9A /* CustomTopSegment.swift */; };
+		3DF8FE5220A13BAC00903C9A /* CustomAddressListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8FE5120A13BAB00903C9A /* CustomAddressListView.swift */; };
+		3DF8FE5420A13BF000903C9A /* CustomInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8FE5320A13BF000903C9A /* CustomInterestView.swift */; };
+		3DF8FE5620A13C3100903C9A /* CustomMyQRcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8FE5520A13C3100903C9A /* CustomMyQRcodeView.swift */; };
 		8A3D3935DB56DD01269FF9D2 /* Pods_WeiboDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA2E3E966D610ABD0658B39 /* Pods_WeiboDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +74,11 @@
 		3DEC11442085A51800E19D68 /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		3DEC11462086E0B500E19D68 /* MyProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileTableViewCell.swift; sourceTree = "<group>"; };
 		3DEC11482086E5B200E19D68 /* CustomMyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMyView.swift; sourceTree = "<group>"; };
+		3DF8FE4D20A133A500903C9A /* AddFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
+		3DF8FE4F20A134A900903C9A /* CustomTopSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTopSegment.swift; sourceTree = "<group>"; };
+		3DF8FE5120A13BAB00903C9A /* CustomAddressListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddressListView.swift; sourceTree = "<group>"; };
+		3DF8FE5320A13BF000903C9A /* CustomInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInterestView.swift; sourceTree = "<group>"; };
+		3DF8FE5520A13C3100903C9A /* CustomMyQRcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMyQRcodeView.swift; sourceTree = "<group>"; };
 		C99E4F935DDCA91042821858 /* Pods-WeiboDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiboDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeiboDemo/Pods-WeiboDemo.release.xcconfig"; sourceTree = "<group>"; };
 		EFA2E3E966D610ABD0658B39 /* Pods_WeiboDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeiboDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -220,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				3DEC11392084923300E19D68 /* MyViewController.swift */,
+				3DF8FE4A20A1332700903C9A /* AddFriends(添加好友) */,
 				3D5B8B9320887839006889E8 /* Set(设置) */,
 				3DEC113E2085904000E19D68 /* Cell */,
 				3DEC113D2085903F00E19D68 /* Model */,
@@ -249,6 +260,34 @@
 			children = (
 				3DEC1142208595A300E19D68 /* MyView.swift */,
 				3DEC11482086E5B200E19D68 /* CustomMyView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3DF8FE4A20A1332700903C9A /* AddFriends(添加好友) */ = {
+			isa = PBXGroup;
+			children = (
+				3DF8FE4B20A1332700903C9A /* Cell */,
+				3DF8FE4C20A1332700903C9A /* View */,
+				3DF8FE4D20A133A500903C9A /* AddFriendsViewController.swift */,
+			);
+			path = "AddFriends(添加好友)";
+			sourceTree = "<group>";
+		};
+		3DF8FE4B20A1332700903C9A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3DF8FE4C20A1332700903C9A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3DF8FE4F20A134A900903C9A /* CustomTopSegment.swift */,
+				3DF8FE5120A13BAB00903C9A /* CustomAddressListView.swift */,
+				3DF8FE5320A13BF000903C9A /* CustomInterestView.swift */,
+				3DF8FE5520A13C3100903C9A /* CustomMyQRcodeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -392,16 +431,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DF8FE5620A13C3100903C9A /* CustomMyQRcodeView.swift in Sources */,
 				3DEC11342084920500E19D68 /* MessageViewController.swift in Sources */,
 				3DEC11492086E5B200E19D68 /* CustomMyView.swift in Sources */,
 				3DEC11262084464000E19D68 /* BaseTabBarController.swift in Sources */,
 				3DEC113A2084923300E19D68 /* MyViewController.swift in Sources */,
+				3DF8FE5020A134A900903C9A /* CustomTopSegment.swift in Sources */,
 				3D5B8BA2208879B9006889E8 /* SetView.swift in Sources */,
+				3DF8FE5220A13BAC00903C9A /* CustomAddressListView.swift in Sources */,
 				3D5B8B9C2088787F006889E8 /* SetViewController.swift in Sources */,
 				3DEC1143208595A300E19D68 /* MyView.swift in Sources */,
 				3DEC11472086E0B500E19D68 /* MyProfileTableViewCell.swift in Sources */,
 				3DEC1130208491C600E19D68 /* BaseViewController.swift in Sources */,
+				3DF8FE5420A13BF000903C9A /* CustomInterestView.swift in Sources */,
 				3DEC10142084394100E19D68 /* AppDelegate.swift in Sources */,
+				3DF8FE4E20A133A500903C9A /* AddFriendsViewController.swift in Sources */,
 				3DEC11452085A51800E19D68 /* MyTableViewCell.swift in Sources */,
 				3DEC11382084922500E19D68 /* DiscoverViewController.swift in Sources */,
 				3DEC1132208491EE00E19D68 /* HomeViewController.swift in Sources */,

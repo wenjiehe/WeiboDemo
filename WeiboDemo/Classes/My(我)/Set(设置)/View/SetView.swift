@@ -36,6 +36,7 @@ class SetView: UIView, UITableViewDataSource, UITableViewDelegate {
                            [SetCellStyle.newText, SetCellStyle.arrow]]
         
         self.addSubview(self.tableView)
+        self.footerView.frame = CGRect(x: 0, y: 0, width: 0, height: 74)
         self.footerView.addSubview(self.exitBtn)
         self.tableView.tableFooterView = self.footerView
 
@@ -49,14 +50,8 @@ class SetView: UIView, UITableViewDataSource, UITableViewDelegate {
             make.top.left.right.bottom.equalToSuperview()
         }
         
-        self.footerView.snp.makeConstraints { make in
-            make.top.equalTo(self.tableView.snp.bottom).offset(0)
-            make.width.equalTo(UIScreen.main.bounds.size.width)
-            make.height.equalTo(64)
-        }
-
         self.exitBtn.snp.makeConstraints { make in
-            make.top.equalTo(10)
+            make.top.equalTo(15)
             make.left.equalTo(0)
             make.right.equalTo(0)
             make.height.equalTo(44)
@@ -75,7 +70,7 @@ class SetView: UIView, UITableViewDataSource, UITableViewDelegate {
     
     private lazy var footerView: UIView = {
         let footer = UIView()
-        footer.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        footer.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         return footer
     }()
     
@@ -85,6 +80,7 @@ class SetView: UIView, UITableViewDataSource, UITableViewDelegate {
         exit.setTitleColor(#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), for: UIControlState.normal)
         exit.titleLabel?.textAlignment = NSTextAlignment.center
         exit.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        exit.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         exit.addTarget(self, action: #selector(exitAction(_:)), for: UIControlEvents.touchUpInside)
         return exit
     }()
